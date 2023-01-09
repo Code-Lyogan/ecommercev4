@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom';
+import Home from './components/Home';
+import Products from './components/Products';
+import Contact from './components/Contact';
+import ImageSlider from './components/Slider';
+import { SliderData } from './components/SliderData';
+import './components/Slider.css';
+import Footer from './components/Footer'
+import Form from './components/Form';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return(
+        <>
+            <Router>
+            <Navbar />
+                <Switch>
+                    <Route path='/' element = {<Home />} exact>
+                        <Home />
+                        <ImageSlider slides={SliderData} />
+                        <Footer />
+                    </Route>
+                    <Route path='/products' element = {<Products />} exact>
+                        <Products />
+                        <Footer />
+                    </Route>
+                    <Route path='/contact' element = {<Contact />} exact>
+                        <Contact />
+                        <Form />
+                        <Footer />
+                    </Route>
+                </Switch>
+            </Router>
+        </>
+    )
 }
 
 export default App;
